@@ -39,5 +39,5 @@ TOPNAV
   Brand -> Create Brand
        \-> Tabla Brand
 
-total ->    3 secciones,
+total ->    3 secciones principales
             2 de ellas con 2 subsecciones cada una
