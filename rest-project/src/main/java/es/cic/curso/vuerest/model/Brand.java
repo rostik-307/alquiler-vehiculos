@@ -1,32 +1,34 @@
 package es.cic.curso.vuerest.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
 
 @Entity
-@Table(name = "brand")
 public class Brand {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // secure internal id
+    private Long id;
 
-    private Long idBrand; // auto-increment id for reference
-
+    @Column(name = "name")  // Maps to the 'name' column in the database
     private String name;
-    private String details;
+
+    @Column(name = "year")  // Maps to the 'year' column in the database
     private int year;
 
-    public Brand() {
-    }
+    private String details;
 
-    public Brand(Long idBrand, String name, String details, int year) {
-        this.idBrand = idBrand;
+    // Constructors, getters, setters
+    public Brand() {}
+
+    public Brand(String name, int year, String details) {
         this.name = name;
-        this.details = details;
         this.year = year;
+        this.details = details;
     }
 
     public Long getId() {
@@ -37,28 +39,12 @@ public class Brand {
         this.id = id;
     }
 
-    public Long getIdBrand() {
-        return idBrand;
-    }
-
-    public void setIdBrand(Long idBrand) {
-        this.idBrand = idBrand;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDetails() {
-        return details;
-    }
-
-    public void setDetails(String details) {
-        this.details = details;
     }
 
     public int getYear() {
@@ -69,4 +55,11 @@ public class Brand {
         this.year = year;
     }
 
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
 }

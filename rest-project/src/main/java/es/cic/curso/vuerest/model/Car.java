@@ -1,37 +1,41 @@
 package es.cic.curso.vuerest.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+
 
 @Entity
-@Table(name = "car")
 public class Car {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // secure internal id
-
-    private Long idCar; // auto-increment id for front-end
+    private Long id;
 
     private String model;
+
+    @Column(name = "year")  // Maps to the 'year' column in the database
     private int year;
+
     private String color;
+
+    @Column(name = "description")  // Maps to the 'description' column in the database
     private String description;
+
     private String observations;
 
     @ManyToOne
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
-    public Car() {
-    }
+    // Constructors, getters, setters
+    public Car() {}
 
-    public Car(Long idCar, String model, int year, String color, String description, String observations, Brand brand) {
-        this.idCar = idCar;
+    public Car(String model, int year, String color, String description, String observations, Brand brand) {
         this.model = model;
         this.year = year;
         this.color = color;
@@ -46,14 +50,6 @@ public class Car {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getIdCar() {
-        return idCar;
-    }
-
-    public void setIdCar(Long idCar) {
-        this.idCar = idCar;
     }
 
     public String getModel() {
@@ -103,7 +99,4 @@ public class Car {
     public void setBrand(Brand brand) {
         this.brand = brand;
     }
-
-    
-
 }
