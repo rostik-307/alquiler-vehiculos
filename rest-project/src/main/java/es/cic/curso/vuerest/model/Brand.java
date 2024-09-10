@@ -14,11 +14,12 @@ public class Brand {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")  // Maps to the 'name' column in the database
+    @Column(name = "\"name\"")
     private String name;
 
-    @Column(name = "year")  // Maps to the 'year' column in the database
-    private int year;
+    @Column(name = "\"year\"")
+    private Integer year;
+    
 
     private String details;
 

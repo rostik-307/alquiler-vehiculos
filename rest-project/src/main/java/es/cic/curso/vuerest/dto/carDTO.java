@@ -1,47 +1,15 @@
-package es.cic.curso.vuerest.model;
+package es.cic.curso.vuerest.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-
-@Entity
-public class Car {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class carDTO {
     private Long id;
-
     private String model;
-
-    @Column(name = "\"year\"")
-    private Integer year;
-    
-
+    private int year;
     private String color;
     private String description;
     private String observations;
     private Boolean available;
-
-    @ManyToOne
-    @JoinColumn(name = "brand_id")
-    private Brand brand;
-
-    // Constructors, getters, setters
-    public Car() {
-    }
-
-    public Car(String model, int year, String color, String description, String observations, Brand brand) {
-        this.model = model;
-        this.year = year;
-        this.color = color;
-        this.description = description;
-        this.observations = observations;
-        this.brand = brand;
-    }
+    private Long brandId;
+    private String brandName;
 
     public Long getId() {
         return id;
@@ -91,14 +59,6 @@ public class Car {
         this.observations = observations;
     }
 
-    public Brand getBrand() {
-        return brand;
-    }
-
-    public void setBrand(Brand brand) {
-        this.brand = brand;
-    }
-
     public Boolean getAvailable() {
         return available;
     }
@@ -107,5 +67,20 @@ public class Car {
         this.available = available;
     }
 
-    
+    public Long getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
 }

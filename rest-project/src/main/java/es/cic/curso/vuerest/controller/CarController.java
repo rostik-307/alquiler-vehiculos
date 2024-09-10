@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/cars")
-@CrossOrigin(origins = "*") // Allow CORS requests from any origin (for frontend access)
+@CrossOrigin(origins = "*")
 public class CarController {
 
     @Autowired

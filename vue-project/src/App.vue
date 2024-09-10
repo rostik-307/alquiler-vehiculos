@@ -1,6 +1,5 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
@@ -12,8 +11,9 @@ import HelloWorld from './components/HelloWorld.vue'
       <router-link to="/brands" class="nav-link">Marcas</router-link>
     </nav>
 
-    <!-- View Render -->
-    <router-view />
+    <div class="content">
+      <router-view />
+    </div>
   </div>
 </template>
 

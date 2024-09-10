@@ -1,27 +1,24 @@
 <template>
     <div>
-        <h1>Coches</h1>
+        <h1>Marcas
+            <button class="crear-button" @click="goToBrandCreationForm">Crear Marca</button>
+        </h1>
         <table>
             <thead>
                 <tr>
-                    <th>Modelo</th>
+                    <th>Nombre</th>
                     <th>Año</th>
-                    <th>Color</th>
-                    <th>Descripción</th>
-                    <th>Marca</th>
+                    <th>Detalles</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="car in cars" :key="car.idCar">
-                    <td>{{ car.model }}</td>
-                    <td>{{ car.year }}</td>
-                    <td>{{ car.color }}</td>
-                    <td>{{ car.description }}</td>
-                    <td>{{ car.brand.name }}</td>
+                <tr v-for="brand in brands" :key="brand.id">
+                    <td>{{ brand.name }}</td>
+                    <td>{{ brand.year }}</td>
+                    <td>{{ brand.details }}</td>
                 </tr>
             </tbody>
         </table>
-        <button @click="goToCarCreationForm">Crear Coche</button>
     </div>
 </template>
 
@@ -29,23 +26,27 @@
 import axios from 'axios';
 
 export default {
+    name: 'BrandsPage',
     data() {
         return {
-            cars: [],
+            brands: []
         };
     },
-    mounted() {
-        this.fetchCars();
+    created() {
+        this.fetchBrands();
     },
     methods: {
-        fetchCars() {
-            axios.get('/api/cars').then(response => {
-                this.cars = response.data;
-            });
+        async fetchBrands() {
+            try {
+                const response = await axios.get('http://localhost:8080/api/brands');
+                this.brands = response.data;
+            } catch (error) {
+                console.error('Error fetching brands:', error);
+            }
         },
-        goToCarCreationForm() {
-            this.$router.push('/create-car');
-        },
-    },
+        goToBrandCreationForm() {
+            this.$router.push('/brand/create');
+        }
+    }
 };
 </script>
