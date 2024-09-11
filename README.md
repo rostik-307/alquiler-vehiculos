@@ -41,3 +41,16 @@ TOPNAV
 ```
 total ->    3 secciones principales
             2 de ellas con 2 subsecciones cada una
+
+========== To Do List ==========
+
+- Listado Coches
+- Listado Marcas
+- Creación Coches
+- Creación Marcas
+- Edicion en las tablas
+- Borrado en las tablas
+- Avisos con toast 
+- Ver Detalles en las tablas
+- Tests individuales para el rest
+- Tests e2e en cypress

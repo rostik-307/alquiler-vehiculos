@@ -6,7 +6,8 @@ CREATE TABLE brand (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     "name" VARCHAR(255) NOT NULL,
     "year" INT NOT NULL,
-    details VARCHAR(255)
+    details VARCHAR(255),
+    "disabled" BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE car (
@@ -39,8 +40,9 @@ INSERT INTO brand (id, "name", "year", details) VALUES
 (14, 'Kia', 1944, 'Fabricante de automóviles surcoreano'),
 (15, 'Jaguar', 1922, 'Fabricante de automóviles británico de lujo'),
 (16, 'Land Rover', 1948, 'Fabricante de vehículos todoterreno británico'),
-(17, 'Porsche', 1931, 'Fabricante de automóviles deportivo alemán'),
-(18, 'Tesla', 2003, 'Fabricante de automóviles eléctricos estadounidense');
+(17, 'Porsche', 1931, 'Fabricante de automóviles deportivo alemán');
+INSERT INTO brand (id, "name", "year", details,"disabled") VALUES
+(18, 'Tesla', 2003, 'Fabricante de automóviles eléctricos estadounidense',TRUE);
 
 -- Insert 48 example cars with translated data
 INSERT INTO car (id, model, "year", color, description, observations, available, brand_id) VALUES

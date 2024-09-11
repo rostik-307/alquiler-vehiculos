@@ -23,6 +23,9 @@ public class Brand {
 
     private String details;
 
+    @Column(name = "\"disabled\"")
+    public Boolean disabled = false;
+
     // Constructors, getters, setters
     public Brand() {}
 
@@ -62,5 +65,13 @@ public class Brand {
 
     public void setDetails(String details) {
         this.details = details;
+    }
+
+    public Boolean getDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(Boolean disabled) {
+        this.disabled = disabled;
     }
 }

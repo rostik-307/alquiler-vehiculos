@@ -6,6 +6,9 @@ import { RouterLink, RouterView } from 'vue-router'
   <div id="app">
     <!-- Top Navigation -->
     <nav class="navbar">
+      <router-link to="/" class="main-logo-link">
+        <img src="/src/assets/logo.svg" alt="car-logo" class="main-logo" />
+      </router-link>
       <router-link to="/" class="nav-link">Inicio</router-link>
       <router-link to="/cars" class="nav-link">Coches</router-link>
       <router-link to="/brands" class="nav-link">Marcas</router-link>
@@ -46,7 +49,6 @@ nav a.router-link-exact-active:hover {
 nav a {
   display: inline-block;
   padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
 }
 
 nav a:first-of-type {

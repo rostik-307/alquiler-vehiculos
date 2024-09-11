@@ -30,4 +30,16 @@ public class BrandService {
     public void deleteBrand(Long id) {
         brandRepository.deleteById(id);
     }
+
+    public void disableBrand(Long id) {
+        Brand brand = brandRepository.findById(id).get();
+        brand.setDisabled(true);
+        brandRepository.save(brand);
+    }
+
+    public void enableBrand(Long id) {
+        Brand brand = brandRepository.findById(id).get();
+        brand.setDisabled(false);
+        brandRepository.save(brand);
+    }
 }

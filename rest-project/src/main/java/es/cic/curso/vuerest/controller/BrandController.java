@@ -9,9 +9,11 @@ import es.cic.curso.vuerest.service.BrandService;
 import java.util.List;
 import java.util.Optional;
 
+
+
 @RestController
 @RequestMapping("/api/brands")
-@CrossOrigin(origins = "*") // Allow CORS requests from any origin (for frontend access)
+@CrossOrigin(origins = "http://localhost:5173")  // Specify the allowed origin
 public class BrandController {
 
     @Autowired
@@ -41,5 +43,13 @@ public class BrandController {
     @DeleteMapping("/{id}")
     public void deleteBrand(@PathVariable Long id) {
         brandService.deleteBrand(id);
+    }
+
+    public void disableBrand(@PathVariable Long id) {
+        brandService.disableBrand(id);
+    }
+
+    public void enableBrand(@PathVariable Long id) {
+        brandService.enableBrand(id);
     }
 }
