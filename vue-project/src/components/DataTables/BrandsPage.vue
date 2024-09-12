@@ -3,7 +3,7 @@
         <h1>
             Marcas
             <button class="crear-button" @click="goToBrandCreationForm">
-                <img src="/src/assets/plus.svg" alt="crear" class="crud-button"/>
+                <img src="/src/assets/plus.svg" alt="crear" class="crud-button" />
             </button>
         </h1>
         <table>
@@ -38,17 +38,17 @@
                     <td class="table-details table-collapse">{{ brand.details }}</td>
                     <td class="float-right">
                         <button class="details-button" @click="viewBrandDetails(brand.id)">
-                            <img src="/src/assets/view.svg" alt="ver" class="crud-button"/>
+                            <img src="/src/assets/view.svg" alt="ver" class="crud-button" />
                         </button>
                         <button class="edit-button" @click="editBrand(brand.id)">
-                            <img src="/src/assets/edit.svg" alt="editar" class="crud-button"/>
+                            <img src="/src/assets/edit.svg" alt="editar" class="crud-button" />
                         </button>
                         <button v-if="!(carCounts[brand.id] >= 0)" class="delete-button"
                             @click="confirmDisable(brand.id)">
-                            <img src="/src/assets/delete.svg" alt="borrar" class="crud-button"/>
+                            <img src="/src/assets/delete.svg" alt="borrar" class="crud-button" />
                         </button>
                         <button v-else class="disabled-button" disabled>
-                            <img src="/src/assets/delete.svg" alt="borrar" class="crud-button disabled-svg"/>
+                            <img src="/src/assets/delete.svg" alt="borrar" class="crud-button disabled-svg" />
                         </button>
                     </td>
                 </tr>
@@ -72,13 +72,13 @@
                     <td class="table-details table-collapse">{{ brand.details }}</td>
                     <td class="float-right">
                         <button class="details-button" @click="viewBrandDetails(brand.id)">
-                            <img src="/src/assets/view.svg" alt="ver" class="crud-button"/>
+                            <img src="/src/assets/view.svg" alt="ver" class="crud-button" />
                         </button>
                         <button class="edit-button" @click="editBrand(brand.id)">
-                            <img src="/src/assets/edit.svg" alt="editar" class="crud-button"/>
+                            <img src="/src/assets/edit.svg" alt="editar" class="crud-button" />
                         </button>
-                        <button class="delete-button" @click="confirmEnable(brand.id)">
-                            <img src="/src/assets/delete.svg" alt="eliminar" class="crud-button"/>
+                        <button class="edit-button" @click="confirmEnable(brand.id)">
+                            <img src="/src/assets/delete.svg" alt="eliminar" class="crud-button" />
                         </button>
                     </td>
                 </tr>
@@ -86,11 +86,13 @@
         </table>
 
         <!-- Confirmation modal -->
+        <!-- Confirmation modal -->
         <DeleteConfirmationModal :show="isModalVisible"
             :title="actionType === 'disable' ? 'Confirmar Deshabilitación' : 'Confirmar Habilitación'"
             :message="actionType === 'disable' ? '¿Estás seguro de que quieres deshabilitar esta marca?' : '¿Estás seguro de que quieres habilitar esta marca?'"
             :confirmButtonLabel="actionType === 'disable' ? 'Deshabilitar' : 'Habilitar'" @confirm="confirmAction"
-            @cancel="cancelAction" />
+            @cancel="cancelAction" data-cy="confirmation-modal" />
+
     </div>
 </template>
 

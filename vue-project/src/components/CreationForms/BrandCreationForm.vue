@@ -12,7 +12,7 @@
             <input type="text" v-model="brand.details" id="details" />
 
             <button class="back-button" @click="goBack">
-                <img src="/src/assets/back.svg" alt="crear" class="crud-button"/>
+                <img src="/src/assets/back.svg" alt="volver" class="crud-button"/>
             </button>
             <button class="submit-button" type="submit">
                 <img src="/src/assets/save.svg" alt="crear" class="crud-button"/>
@@ -32,18 +32,23 @@ export default {
                 name: '',
                 year: '',
                 details: '',
-                disabled: false  // Add the disabled field to the brand object
+                disabled: false  // Initialize the disabled field to false
             }
         };
     },
     methods: {
         async createBrand() {
             try {
+                // Send a POST request to create the new brand
                 await axios.post('http://localhost:8080/api/brands', this.brand);
+                // Redirect to the brands list after successful creation
                 this.$router.push('/brands');
             } catch (error) {
                 console.error('Error creating brand:', error);
             }
+        },
+        goBack() {
+            this.$router.push('/brands');
         }
     }
 };

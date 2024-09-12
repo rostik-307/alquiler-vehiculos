@@ -3,7 +3,7 @@
         <h1>
             Coches
             <button class="crear-button" @click="goToCarCreationForm">
-                <img src="/src/assets/plus.svg" alt="crear" class="crud-button"/>
+                <img src="/src/assets/plus.svg" alt="crear" class="crud-button" />
             </button>
         </h1>
         <table>
@@ -11,11 +11,8 @@
                 <tr>
                     <th>
                         Marca
-                        <button
-                            class="sort-button"
-                            :class="{ active: sortKey === 'brand.name' }"
-                            @click="sort('brand.name')"
-                        >
+                        <button class="sort-button" :class="{ active: sortKey === 'brand.name' }"
+                            @click="sort('brand.name')">
                             <span v-if="sortKey === 'brand.name'">
                                 {{ sortOrder === 'asc' ? '↑' : '↓' }}
                             </span>
@@ -24,11 +21,7 @@
                     </th>
                     <th>
                         Modelo
-                        <button
-                            class="sort-button"
-                            :class="{ active: sortKey === 'model' }"
-                            @click="sort('model')"
-                        >
+                        <button class="sort-button" :class="{ active: sortKey === 'model' }" @click="sort('model')">
                             <span v-if="sortKey === 'model'">
                                 {{ sortOrder === 'asc' ? '↑' : '↓' }}
                             </span>
@@ -37,11 +30,7 @@
                     </th>
                     <th class="table-collapse2">
                         Año
-                        <button
-                            class="sort-button"
-                            :class="{ active: sortKey === 'year' }"
-                            @click="sort('year')"
-                        >
+                        <button class="sort-button" :class="{ active: sortKey === 'year' }" @click="sort('year')">
                             <span v-if="sortKey === 'year'">
                                 {{ sortOrder === 'asc' ? '↑' : '↓' }}
                             </span>
@@ -50,11 +39,7 @@
                     </th>
                     <th class="table-collapse2">
                         Color
-                        <button
-                            class="sort-button"
-                            :class="{ active: sortKey === 'color' }"
-                            @click="sort('color')"
-                        >
+                        <button class="sort-button" :class="{ active: sortKey === 'color' }" @click="sort('color')">
                             <span v-if="sortKey === 'color'">
                                 {{ sortOrder === 'asc' ? '↑' : '↓' }}
                             </span>
@@ -76,15 +61,15 @@
                     <td class="table-collapse">{{ car.description }}</td>
                     <td class="float-right">
                         <button class="details-button" @click="viewCarDetails(car.id)">
-                            <img src="/src/assets/view.svg" alt="ver" class="crud-button"/>
+                            <img src="/src/assets/view.svg" alt="ver" class="crud-button" />
                         </button>
 
                         <button class="edit-button" @click="editCar(car.id)">
-                            <img src="/src/assets/edit.svg" alt="editar" class="crud-button"/>
+                            <img src="/src/assets/edit.svg" alt="editar" class="crud-button" />
                         </button>
 
                         <button class="delete-button" @click="confirmDelete(car.id)">
-                            <img src="/src/assets/delete.svg" alt="borrar" class="crud-button"/>
+                            <img src="/src/assets/delete.svg" alt="borrar" class="crud-button" />
                         </button>
                     </td>
                 </tr>
@@ -99,6 +84,7 @@
 <script>
 import axios from 'axios';
 import DeleteConfirmationModal from '@/components/Modals/DeleteConfirmationModal.vue';
+import { useToast } from 'vue-toastification';
 
 export default {
     name: 'CarsPage',
@@ -124,7 +110,7 @@ export default {
                     if (this.sortKey) {
                         let aValue = a;
                         let bValue = b;
-                        
+
                         // Handle nested keys (for sorting by brand.name)
                         this.sortKey.split('.').forEach(key => {
                             aValue = aValue[key];
@@ -141,11 +127,13 @@ export default {
     },
     methods: {
         async fetchCars() {
+            const toast = useToast();
             try {
                 const response = await axios.get('http://localhost:8080/api/cars');
                 this.cars = response.data;
             } catch (error) {
                 console.error('Error fetching cars:', error);
+                this.toast.error('Error fetching cars');
             }
         },
         goToCarCreationForm() {
@@ -159,24 +147,27 @@ export default {
         },
         confirmDelete(carId) {
             this.carToDelete = carId;
-            this.isModalVisible = true; // Show the modal
+            this.isModalVisible = true;
         },
         cancelDelete() {
             this.isModalVisible = false;
-            this.carToDelete = null; // Reset the selected car
+            this.carToDelete = null;
         },
         async deleteCar() {
             if (this.carToDelete !== null) {
                 try {
                     await axios.delete(`http://localhost:8080/api/cars/${this.carToDelete}`);
                     this.cars = this.cars.filter(car => car.id !== this.carToDelete);
-                    this.isModalVisible = false; // Hide the modal after deletion
-                    this.carToDelete = null; // Reset the selected car
+                    this.isModalVisible = false;
+                    this.carToDelete = null;
+                    // this.$toast.success('Coche eliminado correctamente');
                 } catch (error) {
                     console.error('Error deleting car:', error);
+                    // this.$toast.error('Error al borrar el coche');
                 }
             }
         },
+
         sort(key) {
             if (this.sortKey === key) {
                 this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
@@ -196,11 +187,13 @@ export default {
     background: none;
     border: none;
     cursor: pointer;
-    color: grey; /* Default color when not active */
+    color: grey;
+    /* Default color when not active */
 }
 
 .sort-button.active {
-    color: black; /* Highlighted color when active */
+    color: black;
+    /* Highlighted color when active */
 }
 
 /* Style the up and down arrows */
