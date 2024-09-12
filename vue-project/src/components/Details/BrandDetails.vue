@@ -4,7 +4,9 @@
         <p><strong>Nombre:</strong> {{ brand.name }}</p>
         <p><strong>Año:</strong> {{ brand.year }}</p>
         <p><strong>Detalles:</strong> {{ brand.details }}</p>
-        <button class="edit-button" @click="goBack">Volver</button>
+        <button class="edit-button" @click="goBack">
+            <img src="/src/assets/back.svg" alt="atras" class="crud-button"/>
+        </button>
     </div>
 </template>
 
@@ -13,7 +15,6 @@ import axios from 'axios';
 
 export default {
     name: 'BrandDetails',
-    props: ['id'],
     data() {
         return {
             brand: {}
@@ -25,7 +26,9 @@ export default {
     methods: {
         async fetchBrand() {
             try {
-                const response = await axios.get(`http://localhost:8080/api/brands/${this.id}`);
+                // Get the id from the route parameter
+                const brandId = this.$route.params.id;
+                const response = await axios.get(`http://localhost:8080/api/brands/${brandId}`);
                 this.brand = response.data;
             } catch (error) {
                 console.error('Error fetching brand details:', error);

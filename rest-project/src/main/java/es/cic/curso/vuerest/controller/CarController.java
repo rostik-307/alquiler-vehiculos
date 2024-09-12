@@ -29,12 +29,13 @@ public class CarController {
 
     @PostMapping
     public Car createCar(@RequestBody Car car) {
+        // Ensure that the car object does not include an id
         return carService.saveCar(car);
     }
-
+    
     @PutMapping("/{id}")
     public Car updateCar(@PathVariable Long id, @RequestBody Car car) {
-        car.setId(id); // ensure the correct car is updated
+        car.setId(id); // Ensure the correct car is updated
         return carService.saveCar(car);
     }
 

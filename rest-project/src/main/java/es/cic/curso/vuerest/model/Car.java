@@ -12,34 +12,32 @@ import jakarta.persistence.ManyToOne;
 public class Car {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-incrementing ID
     private Long id;
-
+    
     private String model;
-
     @Column(name = "\"year\"")
     private Integer year;
-    
-
     private String color;
     private String description;
     private String observations;
-    private Boolean available;
+    private boolean available;
 
     @ManyToOne
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
-    // Constructors, getters, setters
+
     public Car() {
     }
 
-    public Car(String model, int year, String color, String description, String observations, Brand brand) {
+    public Car(String model, Integer year, String color, String description, String observations, boolean available, Brand brand) {
         this.model = model;
         this.year = year;
         this.color = color;
         this.description = description;
         this.observations = observations;
+        this.available = available;
         this.brand = brand;
     }
 
@@ -59,11 +57,11 @@ public class Car {
         this.model = model;
     }
 
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 
@@ -91,6 +89,14 @@ public class Car {
         this.observations = observations;
     }
 
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
     public Brand getBrand() {
         return brand;
     }
@@ -99,13 +105,6 @@ public class Car {
         this.brand = brand;
     }
 
-    public Boolean getAvailable() {
-        return available;
-    }
-
-    public void setAvailable(Boolean available) {
-        this.available = available;
-    }
-
+    
     
 }

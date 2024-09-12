@@ -39,11 +39,13 @@ nav {
 }
 
 nav a.router-link-exact-active {
-  color: var(--color-text);
+  color: #000;
+  font-weight: bold;
 }
 
 nav a.router-link-exact-active:hover {
-  background-color: transparent;
+  background-color: #888;
+  color: var(--text-color);
 }
 
 nav a {

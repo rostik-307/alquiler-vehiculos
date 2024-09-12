@@ -11,7 +11,12 @@
             <label for="details">Detalles:</label>
             <input type="text" v-model="brand.details" id="details" />
 
-            <button type="submit">Guardar</button>
+            <button class="back-button" @click="goBack">
+                <img src="/src/assets/back.svg" alt="crear" class="crud-button"/>
+            </button>
+            <button class="submit-button" type="submit">
+                <img src="/src/assets/save.svg" alt="crear" class="crud-button"/>
+            </button>   
         </form>
     </div>
 </template>
@@ -26,7 +31,8 @@ export default {
             brand: {
                 name: '',
                 year: '',
-                details: ''
+                details: '',
+                disabled: false  // Add the disabled field to the brand object
             }
         };
     },

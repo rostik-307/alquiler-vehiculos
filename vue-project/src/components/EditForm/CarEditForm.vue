@@ -21,8 +21,12 @@
                 </option>
             </select>
 
-            <button class="back-button" @click="goBack">Atrás</button>
-            <button class="submit-button" type="submit">Guardar</button>
+            <button class="back-button" @click="goBack">
+                <img src="/src/assets/back.svg" alt="atras" class="crud-button"/>
+            </button>
+            <button class="submit-button" type="submit">
+                <img src="/src/assets/save.svg" alt="crear" class="crud-button"/>
+            </button>
         </form>
     </div>
 </template>

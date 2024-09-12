@@ -11,7 +11,12 @@
             <label for="details">Detalles:</label>
             <input type="text" v-model="brand.details" id="details" />
 
-            <button type="submit">Guardar</button>
+            <button class="back-button" @click="goBack">
+                <img src="/src/assets/back.svg" alt="atras" class="crud-button"/>
+            </button>
+            <button class="submit-button" type="submit">
+                <img src="/src/assets/save.svg" alt="guadar" class="crud-button"/>
+            </button>        
         </form>
     </div>
 </template>
@@ -21,7 +26,6 @@ import axios from 'axios';
 
 export default {
     name: 'BrandEditForm',
-    props: ['id'],
     data() {
         return {
             brand: {
@@ -37,7 +41,9 @@ export default {
     methods: {
         async fetchBrand() {
             try {
-                const response = await axios.get(`http://localhost:8080/api/brands/${this.id}`);
+                // Get the id from the route parameter
+                const brandId = this.$route.params.id;
+                const response = await axios.get(`http://localhost:8080/api/brands/${brandId}`);
                 this.brand = response.data;
             } catch (error) {
                 console.error('Error fetching brand:', error);
@@ -45,11 +51,16 @@ export default {
         },
         async updateBrand() {
             try {
-                await axios.put(`http://localhost:8080/api/brands/${this.id}`, this.brand);
+                // Get the id from the route parameter
+                const brandId = this.$route.params.id;
+                await axios.put(`http://localhost:8080/api/brands/${brandId}`, this.brand);
                 this.$router.push('/brands');
             } catch (error) {
                 console.error('Error updating brand:', error);
             }
+        },
+        goBack() {
+            this.$router.push('/brands');
         }
     }
 };

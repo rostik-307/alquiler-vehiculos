@@ -6,7 +6,9 @@
         <p><strong>Año:</strong> {{ car.year }}</p>
         <p><strong>Color:</strong> {{ car.color }}</p>
         <p><strong>Descripción:</strong> {{ car.description }}</p>
-        <button class="edit-button" @click="goBack">Volver</button>
+        <button class="edit-button" @click="goBack">
+            <img src="/src/assets/back.svg" alt="atras" class="crud-button"/>
+        </button>
     </div>
 </template>
 

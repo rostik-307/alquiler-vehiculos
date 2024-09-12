@@ -15,13 +15,18 @@
             <input type="text" v-model="car.description" id="description" />
 
             <label for="brand_id">Marca:</label>
-            <select v-model="car.brand_id" id="brand_id" required>
-                <option v-for="brand in brands" :key="brand.id" :value="brand.id">
+            <select v-model="selectedBrand" id="brand_id" required>
+                <option v-for="brand in brands" :key="brand.id" :value="brand">
                     {{ brand.name }}
                 </option>
             </select>
 
-            <button type="submit">Guardar</button>
+            <button class="back-button" @click="goBack">
+                <img src="/src/assets/back.svg" alt="crear" class="crud-button"/>
+            </button>
+            <button class="submit-button" type="submit">
+                <img src="/src/assets/save.svg" alt="guardar" class="crud-button"/>
+            </button>   
         </form>
     </div>
 </template>
@@ -38,13 +43,15 @@ export default {
                 year: '',
                 color: '',
                 description: '',
-                brand_id: ''
+                brand: null  // Change brand_id to brand
             },
-            brands: []
+            brands: [], // Array to hold the list of brands
+            selectedBrand: null, // To hold the selected brand object
+            errorMessage: null // For displaying error messages
         };
     },
     created() {
-        this.fetchBrands();
+        this.fetchBrands(); // Fetch the list of brands when the component is created
     },
     methods: {
         async fetchBrands() {
@@ -57,11 +64,23 @@ export default {
         },
         async createCar() {
             try {
-                await axios.post('http://localhost:8080/api/cars', this.car);
+                const carData = {
+                    ...this.car,
+                    brand: this.selectedBrand, // Use the selected brand object
+                    available: true // Set available to true
+                };
+
+                // Use POST to create a new car
+                await axios.post('http://localhost:8080/api/cars', carData);
+                // Handle successful creation
                 this.$router.push('/cars');
             } catch (error) {
                 console.error('Error creating car:', error);
+                this.errorMessage = `Error creating car: ${error.response?.data?.message || error.message}`;
             }
+        },
+        goBack() {
+            this.$router.push('/cars');
         }
     }
 };
