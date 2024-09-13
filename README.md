@@ -9,8 +9,7 @@ de coches, dado que la aplicación no será actualizada una vez creada
 ========== Esquema bbdd ==========
 
 CAR
-- id (interno de bbdd)
-- idCar (autonum para mostrar (pulpo))
+- id 
 - model
 - year
 - color
@@ -19,11 +18,11 @@ CAR
 - brand -> extkey
 
 BRAND
-- id (interno de bbdd)
-- idBrand (externo para ser referenciado autonum (pulpo x2))
+- id
 - name
 - details
 - year
+- disabled
 
 ========== Mapa de navegación ==========
 
