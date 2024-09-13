@@ -42,7 +42,7 @@ TOPNAV
 total ->    3 secciones principales
             2 de ellas con 2 subsecciones cada una
 
-========== To Do List ==========
+========== Lista de features ==========
 
 - Listado Coches
 - Listado Marcas
@@ -50,7 +50,7 @@ total ->    3 secciones principales
 - Creación Marcas
 - Edicion en las tablas
 - Borrado en las tablas
-- Avisos con toast 
 - Ver Detalles en las tablas
-- Tests individuales para el rest
+- Tests individuales para rest
 - Tests e2e en cypress
+- Avisos con toast 
