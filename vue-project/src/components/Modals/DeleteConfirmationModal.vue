@@ -4,7 +4,7 @@
             <h3>{{ title }}</h3>
             <p>{{ message }}</p>
             <div class="modal-actions">
-                <button class="delete-button" data-cy="confirm-button" @click="confirmAction">Deshabilitar</button>
+                <button class="delete-button" data-cy="confirm-button" @click="confirmAction">Confirmar</button>
                 <button class="details-button" data-cy="cancel-button" @click="cancelAction">Cancelar</button>
             </div>
         </div>
